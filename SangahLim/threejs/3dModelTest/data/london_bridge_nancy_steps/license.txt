@@ -1,0 +1,11 @@
+Model Information:
+* title:	London Bridge Nancy Steps
+* source:	https://sketchfab.com/3d-models/london-bridge-nancy-steps-190b556c5c9741b6a53c8ca432649d53
+* author:	artfletch (https://sketchfab.com/artfletch)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "London Bridge Nancy Steps" (https://sketchfab.com/3d-models/london-bridge-nancy-steps-190b556c5c9741b6a53c8ca432649d53) by artfletch (https://sketchfab.com/artfletch) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+          html,body{
+            padding:0;margin:0;width:100%;height:100%;
+        }
+               .previous{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+video{
+    width: 100%;
+}
+.vid-container{
+    display:block;
+    height: 6000px;
+    position:relative;
+}
+#vid{
+    position:sticky;
+    top:0;
+    left:0;
+    width:100%;
+  height:100vh;
+  object-fit: cover;
+}
+section{  
+    display: block;
+    width: 140px;
+    height: 1000px;
+   margin-left: 40px;
+}
+section > h1{
+    background-color: rgb(240, 248, 255);
+    padding: 30px;
+}
+.text-container{
+    position: absolute;
+    top: 0;
+}
+.previous{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+.previous .text h1{
+    font-size: 20px;
+}
+.previous img{
+    width: 200px;
+}
+    </style>
+</head>
+<body>
+    <div class="previous">
+        <div class="img">
+            <img src="../content/house.png" alt="">
+        </div>
+        <div class="text">
+            <h1>HELLO THIS IS SAMPLE TEXT. <br> NICE TO MEET YOU.</h1>
+        </div>
+    </div>
+    <div class="vid-container">
+        <video id="vid" playsinline autoplay muted src="Skyscrapers - 80724.mp4"></video>
+        <div class="text-container">
+            <section class="01"><h1>text</h1></section>
+            <section class="02"><h1>text</h1></section>
+            <section class="03"><h1>text</h1></section>
+            <section class="04"><h1>text</h1></section>
+            <section class="05"><h1>text</h1></section>
+        </div>
+    </div>
+    <div class="previous">
+        <div class="img">
+            <img src="../content/house.png" alt="">
+        </div>
+        <div class="text">
+            <h1>HELLO THIS IS SAMPLE TEXT. <br> NICE TO MEET YOU.</h1>
+        </div>
+    </div>
+</body>
+<script>
+//     let seeking = false;
+//     var vid = document.querySelector("#vid");
+
+// vid.addEventListener('seeking', function() {
+//     seeking = true;
+// });
+
+// vid.addEventListener('seeked', function() {
+//     seeking = false;
+// });
+
+// function tick(lastKnownScrollPosition) {
+//     if (!seeking) vid.currentTime = lastKnownScrollPosition / 300;
+// }
+
+// let ticking = false;
+
+// window.addEventListener('scroll', function(e) {
+//   const lastKnownScrollPosition = window.pageYOffset-1000;
+
+//   if (!ticking) {
+//     window.requestAnimationFrame(function() {
+//       tick(lastKnownScrollPosition);
+//       ticking = false;
+//     });
+
+//     ticking = true;
+//   }
+// });
+
+    var vid = document.querySelector("#vid");
+
+    vid.pause();
+
+    setInterval(function(){
+    vid.currentTime = (window.pageYOffset-1000)/400;
+}, 40);
+</script>
+</html>
