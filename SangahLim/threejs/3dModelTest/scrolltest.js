@@ -16,11 +16,9 @@ const camera = new THREE.PerspectiveCamera(
 )
 camera.position.set(0,5,15); 
 camera.lookAt(scene.position);
-const jsCanvas = document.getElementById("jsCanvas");
-const prevContainer = document.getElementById("prevContainer");
+const mainContainer = document.querySelector(".main-container");
 const renderer = new THREE.WebGLRenderer({
-    antialias:true,
-    canvas: jsCanvas
+    antialias:true
 })
 renderer.setSize(window.innerWidth, window.innerHeight)
 mainContainer.appendChild(renderer.domElement)
@@ -39,11 +37,31 @@ gltfLoader.load(
 )
 
 
+// const geometry = new THREE.SphereGeometry()
+// const material = new THREE.MeshPhongMaterial({
+//     color: 0x00ff00
+// })
+
 const color = 0xffffff;
 const intensity = 1; //세기
 const light = new THREE.DirectionalLight(color, intensity);
 light.position.set(-1,2,4);
 scene.add(light); //scene 객체의 한 요소로 추가
+
+// const gltfLoader = new GLTFLoader();
+// const url = 'data/adamHead/scene.gltf';
+// gltfLoader.load(
+//     url,
+//     (gltf) => {
+//         const root = gltf.scene;
+//         root.position.set(0,0.5,-10)
+//         scene.add(root);
+//     }
+// )
+
+// const cube = new THREE.Mesh(geometry, material)
+// cube.position.set(0, 0.5, -10)
+// scene.add(cube)
 
 window.addEventListener('resize', onWindowResize, false)
 function onWindowResize() {
@@ -74,6 +92,21 @@ function scalePercent(start, end) {
 // const animationScripts: { start: number; end: number; func: () => void }[] = []
 const animationScripts = [];
 
+
+//add an animation that flashes the cube through 100 percent of scroll
+// animationScripts.push({
+//     start: 0,
+//     end: 101,
+//     func: () => {
+//         let g = material.color.g
+//         g -= 0.05
+//         if (g <= 0) {
+//             g = 1.0
+//         }
+//         material.color.g = g
+//     },
+// })
+
 // //add an animation that moves the cube through first 40 percent of scroll
 animationScripts.push({
     start: 0,
@@ -85,9 +118,9 @@ animationScripts.push({
         //  camera.position.z = lerp(15, -10, scalePercent(0, 60))
         //  camera.position.y = lerp(5, 7, scalePercent(0, 60))
         // root.position.z = lerp(4, 10, scalePercent(0, 40))
-       if(root){
+        if(root){
             root.rotation.y = lerp(0, Math.PI, scalePercent(0, 40))
-       }
+        }
         //console.log(cube.position.z)
     },
 })
@@ -124,9 +157,9 @@ animationScripts.push({
         //auto rotate
         camera.position.z = lerp(10, 15, scalePercent(80, 100))
         // root.rotation.x += 0.01
-       if(root){
-        root.rotation.y += 0.01
-       }
+        if(root){
+            root.rotation.y += 0.01
+           }
     },
 })
 
@@ -143,10 +176,13 @@ let scrollPercent = 0
 document.body.onscroll = () => {
     //calculate the current scroll progress as a percentage
     scrollPercent =
-        //document.documentElement.scrollTop || 
-        ( (document.documentElement.scrollTop - 300) /   ( (mainContainer.scrollHeight) - mainContainer.clientHeight) ) * 100
-           // document.documentElement.scrollHeight ||
-          
+        ((document.documentElement.scrollTop || document.body.scrollTop) /
+            ((document.documentElement.scrollHeight ||
+                document.body.scrollHeight) -
+                document.documentElement.clientHeight)) *
+        100
+    // ;(document.getElementById('scrollProgress') as HTMLDivElement).innerText =
+    //     'Scroll Progress : ' + scrollPercent.toFixed(2)
 }
 
 // const stats = Stats()
@@ -154,14 +190,17 @@ document.body.onscroll = () => {
 
 function animate() {
     requestAnimationFrame(animate)
+
     playScrollAnimations()
+
     render()
+
+    // stats.update()
 }
 
 function render() {
     renderer.render(scene, camera)
 }
-
 
 window.scrollTo({ top: 0, behavior: 'smooth' })
 animate()

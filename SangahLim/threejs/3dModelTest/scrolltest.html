@@ -5,35 +5,36 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Three.js TypeScript Tutorials by Sean Bradley : https://sbcode.net/threejs</title>
         <style>
+            html, body{
+                width:100%;
+                height:100%;
+            }
             body {
                 overflow-x: hidden;
                 margin: 0px;
                 font-family: monospace;
                 color: white;
-                height:auto;
             }
 
             canvas {
-                position: fixed;
+                position: sticky;
                 top: 0;
                 left: 0;
-                z-index:-5;
             }
 
+            .main-container{
+                width:100%;
+                height:500vh;
+            }
             main {
                 width: 100vw;
-                height: 200vh;
+                height: 100%;
                 z-index: 99;
                 position: absolute;
                 justify-content: center;
                 text-align: center;
                 pointer-events: none;
                 font-size: 5vh;
-                opacity:0;
-                transition: all 0.3s;
-            }
-            main.show{
-                opacity:1;
             }
 
             section {
@@ -42,91 +43,54 @@
                 font-size: 4vh;
             }
 
-            .container{
+            .test-container{
                 width:100%;
                 height:100vh;
-                background-color: aliceblue;
                 color:black;
                 display:flex;
                 align-items: center;
                 justify-content: center;
-                position:fixed;
-                opacity:0;
-                transition: all 0.3s;
             }
-
-            .container.show{
-                opacity:1;
-            }
-
-            #nextContainer{
-                height:200vh;
-            }
-
         </style>
     </head>
 
     <body>
-        <div class="container" id="prevContainer">
-            <h1>This is test text.</h1>
+        <div class="test-container">
+            <h1>this is test text</h1>
         </div>
-        <main>
-            <h1>Animate on Scroll</h1>
-            <section>
-                <h2>Begin scrolling to see things change</h2>
-            </section>
-            <section>
-                <h2>Changing Objects Position</h2>
-                <p>모델 돌리기</p>
-            </section>
-            <section>
-                <h2>Changing Objects Rotation</h2>
-                <p>모델 확대하기</p>
-            </section>
-            <section>
-                <h2>Changing Camera Position</h2>
-                <p>카메라 이동하기</p>
-            </section>
-            <section>
-                <h2>You are at the bottom</h2>
-                <p>자동으로 회전하기</p>
-                <p>
-                    Now you can scroll back to the top to reverse the animation
-                </p>
-            </section>
-            <canvas id="jsCanvas"></canvas>
-        </main>
-        <div class="container" id="nextContainer">
-            <h1>This is test text.</h1>
+        <div class="main-container">
+            <main>
+                <h1>Animate on Scroll</h1>
+                <section>
+                    <h2>Begin scrolling to see things change</h2>
+                </section>
+                <section>
+                    <h2>Changing Objects Position</h2>
+                    <p>모델 돌리기</p>
+                </section>
+    
+                <section>
+                    <h2>Changing Objects Rotation</h2>
+                    <p>모델 확대하기</p>
+                </section>
+    
+                <section>
+                    <h2>Changing Camera Position</h2>
+                    <p>카메라 이동하기</p>
+                </section>
+    
+                <section>
+                    <h2>You are at the bottom</h2>
+                    <p>자동으로 회전하기</p>
+                    <p>
+                        Now you can scroll back to the top to reverse the animation
+                    </p>
+                </section>
+            </main>
+        </div>
+        <div class="test-container">
+            <h1>this is test text</h1>
         </div>
         <script type="module" src="scrolltest.js"></script>
-        <script>
-            const mainContainer = document.getElementsByTagName("main")[0];
-            const jsCanvas = document.getElementById("jsCanvas");
-            const prevContainer = document.getElementById("prevContainer");
-            const nextContainer = document.getElementById("nextContainer");
-
-          function scrollEvent(){
-            // if(prevContainer.getBoundingClientRect().top<= 0 && prevContainer.getBoundingClientRect().top>-300){
-            //     prevContainer.classList.add("show");
-            // }else{
-            //     prevContainer.classList.remove("show");
-            // }
-
-            if(document.documentElement.scrollTop >300 && document.documentElement.scrollTop<4000){
-                mainContainer.classList.add("show");
-               prevContainer.classList.remove("show");
-            }else if(document.documentElement.scrollTop >=0 && document.documentElement.scrollTop<300){
-                mainContainer.classList.remove("show");
-                prevContainer.classList.add("show");
-                nextContainer.classList.remove("show");
-            }else if(document.documentElement.scrollTop > prevContainer.clientHeight + mainContainer.scrollHeight){
-                nextContainer.classList.add("show");
-                mainContainer.classList.remove("show");
-            }
-          }
-
-          window.addEventListener("scroll", scrollEvent);
-        </script>
     </body>
 </html>
